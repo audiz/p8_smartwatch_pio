@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef barrery_h
+#define barrery_h
+
 #include "Arduino.h"
 
 void init_battery();
@@ -16,3 +19,5 @@ int get_battery_raw();
 bool get_charge();
 bool get_charged();
 void check_battery_status();
+
+#endif
