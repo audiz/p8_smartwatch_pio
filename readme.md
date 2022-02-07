@@ -1,5 +1,7 @@
 P8 Smartwatch with ANT+ HRM measurement for Platform IO
 
+Based On ATCWatch https://github.com/atc1441/ATCwatch/tree/master/ATCwatch
+
 Connect the P8 Smartwatch using g-link and program bootloder with SoftDevice 6.1.1
 
 Build Project and find bootloder in 
@@ -8,3 +10,4 @@ Build Project and find bootloder in
 Program bootloader using SEGGER JFlash Lite
 
 Then you can upload software using PlatformIO
+
