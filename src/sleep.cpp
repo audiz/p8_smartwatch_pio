@@ -86,7 +86,20 @@ void disable_hardware() {
 }
 
 void sleep_wait() {
+  // 
+  /**
+   * Wrapper around the ARM instruction "WFE", which puts the CPU into a low-power state.
+   * https://devzone.nordicsemi.com/f/nordic-q-a/51696/sd_app_evt_wait-for-power-management
+   * sd_app_wait() should be called in the infinite main loop to ensure that the CPU goes to sleep when its idling, 
+   * i.e. not executing any code in interrupt context. 
+   * 
+   * It is important to note that sd_app_wait() will not return unless there is an event/interrupt waking up the CPU. 
+   * Hence,sd_app_wait() will only be called continuously if there are pending events/interrupts that immediately wake up the CPU again. 
+   * */
   sd_app_evt_wait();
+  /**
+   * The application must ensure that the pended flag is cleared using sd_nvic_ClearPendingIRQ in order to sleep using sd_app_evt_wait() function
+  * */
   sd_nvic_ClearPendingIRQ(SD_EVT_IRQn);
 }
 

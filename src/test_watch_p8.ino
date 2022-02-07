@@ -106,14 +106,16 @@ void setup() {
 int ledState = HIGH;
 
 void loop() {
+  sd_app_evt_wait();
+
   if (get_button()) {
     if(ledState) {
-       bootScreen.setHRM("HRM");
        Bluefruit.Scanner.restartOnDisconnect(false);
        Bluefruit.disconnect(conn_handle_main);
-       //set_backlight(0);
-       //display_enable(false);
-       disable_hardware();
+       set_backlight(0);
+       display_enable(false);
+       //disable_hardware();
+       sleep_wait();
        ledState = LOW;
     } else {
       if (!Bluefruit.connected()) {
