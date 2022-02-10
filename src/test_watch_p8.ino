@@ -43,6 +43,7 @@ void setup() {
   init_display();
   set_backlight(3);
   init_battery();
+  init_touch();
 
   display_booting();
   init_menu();

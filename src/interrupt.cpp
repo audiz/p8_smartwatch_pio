@@ -105,7 +105,7 @@ void init_interrupt() {
   }
   pinMode(PUSH_BUTTON_IN, INPUT );
   last_button_state = digitalRead(PUSH_BUTTON_IN);
-  NRF_GPIO->PIN_CNF[PUSH_BUTTON_IN] |= ((uint32_t)  (last_button_state ? GPIO_PIN_CNF_SENSE_Low : GPIO_PIN_CNF_SENSE_High)  << GPIO_PIN_CNF_SENSE_Pos);
+  NRF_GPIO->PIN_CNF[PUSH_BUTTON_IN] |= ((uint32_t) (last_button_state ? GPIO_PIN_CNF_SENSE_Low : GPIO_PIN_CNF_SENSE_High) << GPIO_PIN_CNF_SENSE_Pos);
 
   pinMode(POWER_INDICATION, INPUT);
   last_charge_state = digitalRead(POWER_INDICATION);
@@ -113,15 +113,15 @@ void init_interrupt() {
 
   pinMode(CHARGE_INDICATION, INPUT);
   last_charged_state = digitalRead(CHARGE_INDICATION);
-  NRF_GPIO->PIN_CNF[CHARGE_INDICATION] |= ((uint32_t)  (last_charged_state ? GPIO_PIN_CNF_SENSE_Low : GPIO_PIN_CNF_SENSE_High) << GPIO_PIN_CNF_SENSE_Pos);
+  NRF_GPIO->PIN_CNF[CHARGE_INDICATION] |= ((uint32_t) (last_charged_state ? GPIO_PIN_CNF_SENSE_Low : GPIO_PIN_CNF_SENSE_High) << GPIO_PIN_CNF_SENSE_Pos);
 
   pinMode(TP_INT, INPUT);
   last_touch_state = digitalRead(TP_INT);
-  NRF_GPIO->PIN_CNF[TP_INT] |= ((uint32_t)  (last_touch_state ? GPIO_PIN_CNF_SENSE_Low : GPIO_PIN_CNF_SENSE_High) << GPIO_PIN_CNF_SENSE_Pos);
+  NRF_GPIO->PIN_CNF[TP_INT] |= ((uint32_t) (last_touch_state ? GPIO_PIN_CNF_SENSE_Low : GPIO_PIN_CNF_SENSE_High) << GPIO_PIN_CNF_SENSE_Pos);
 
   pinMode(BMA421_INT, INPUT);
   last_accl_state = digitalRead(BMA421_INT);
-  NRF_GPIO->PIN_CNF[BMA421_INT] |= ((uint32_t)  (last_accl_state ? GPIO_PIN_CNF_SENSE_Low : GPIO_PIN_CNF_SENSE_High) << GPIO_PIN_CNF_SENSE_Pos);
+  NRF_GPIO->PIN_CNF[BMA421_INT] |= ((uint32_t) (last_accl_state ? GPIO_PIN_CNF_SENSE_Low : GPIO_PIN_CNF_SENSE_High) << GPIO_PIN_CNF_SENSE_Pos);
 
   interrupt_enabled = true;
 }
@@ -217,8 +217,6 @@ void interrupt_button() {
     }
     //digitalWrite(STATUS_LED, ledState);
 
-
-    
     last_button_press = millis();
     if (!sleep_up(WAKEUP_BUTTON)) {
       button_pressed = true;
@@ -237,14 +235,11 @@ void interrupt_button() {
 }
 
 void interrupt_touch() {
-    if (ledState == HIGH) {
-      digitalWrite(STATUS_LED, HIGH);
-    }
-  
+  //digitalWrite(STATUS_LED, HIGH);
   set_was_touched(true);
   if (!sleep_up(WAKEUP_TOUCH)) {
     touch_data_struct touch_data = get_touch();
-    //check_menu(touch_data);
+    check_menu(touch_data);
     set_new_touch_interrupt();
   }
   set_sleep_time();

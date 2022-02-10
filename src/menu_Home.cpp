@@ -2,6 +2,20 @@
 #include "fonts/fonts.h"
 #include "fonts/mksdl100.h"
 
+
+void HomeScreen::touchData(touch_data_struct touch_data) {
+    digitalWrite(STATUS_LED, HIGH);
+    
+    lv_label_set_text_fmt(label, "%X", touch_data.gesture);
+    lv_obj_align(label, lv_scr_act(), LV_ALIGN_CENTER, 0, -60);
+    lv_tick_inc(40);
+    lv_task_handler();
+}
+
+void HomeScreen::right() {
+    //display_notify();
+}
+
 void HomeScreen::pre()
 {
     set_gray_screen_style(&lv_font_roboto_28);

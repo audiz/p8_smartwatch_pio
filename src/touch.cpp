@@ -23,11 +23,11 @@ void init_touch() {
     pinMode(TP_RESET, OUTPUT);
     pinMode(TP_INT, INPUT);
 
-    digitalWrite(TP_RESET, HIGH );
+    digitalWrite(TP_RESET, HIGH);
     delay(50);
     digitalWrite(TP_RESET, LOW);
     delay(5);
-    digitalWrite(TP_RESET, HIGH );
+    digitalWrite(TP_RESET, HIGH);
     delay(50);
 
     user_i2c_read(touch_dev_addr, 0x15, &touch_data.version15, 1);

@@ -19,7 +19,7 @@ int vars_max_menu = 4;
 bool swipe_enabled_bool = false;
 
 
-Screen_def *homeScreen = HomeScreen::getInstance();
+HomeScreen *homeScreen = HomeScreen::getInstance();
 
 Screen_def *currentScreen = homeScreen;
 Screen_def *oldScreen = homeScreen;
@@ -41,7 +41,7 @@ void display_home() {
 
 void display_notify() {
   lastScreen = currentScreen;
-  currentScreen = homeScreen;
+  currentScreen = &bootScreen;
   vars_menu = 0;
 }
 
@@ -87,6 +87,8 @@ void check_button_push(int length) {
 }
 
 void check_menu(touch_data_struct touch_data) {
+  //digitalWrite(STATUS_LED, HIGH);
+  homeScreen->touchData(touch_data);
   if (touch_data.gesture == TOUCH_SLIDE_UP) {
     currentScreen->up();
   } else if (touch_data.gesture == TOUCH_SLIDE_DOWN) {
@@ -99,7 +101,12 @@ void check_menu(touch_data_struct touch_data) {
     currentScreen->left();
   } else if (touch_data.gesture == TOUCH_SLIDE_RIGHT) {
     currentScreen->right();
+  } else if (touch_data.gesture == TOUCH_NO_GESTURE) {
+   
+  } else {
+ 
   }
+
 }
 
 uint32_t get_menu_delay_time() {

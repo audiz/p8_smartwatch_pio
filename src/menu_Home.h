@@ -18,9 +18,7 @@ class HomeScreen : public Screen
 public:
   static HomeScreen *getInstance();
 
-  virtual void init() {
-
-  }; 
+  virtual void touchData(touch_data_struct touch_data);
 
   virtual void setBleInfo(const char *text);
 
@@ -49,9 +47,8 @@ public:
   {
   }
 
-  virtual void right()
-  {
-  }
+  virtual void right();
+
 
   virtual void button_push(int length)
   {
