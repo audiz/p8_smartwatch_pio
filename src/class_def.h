@@ -70,6 +70,9 @@ class Screen_def
       
     }
 
+    /**
+     * Clear display before draw new one
+    */
     virtual void pre_display()
     {
       lv_obj_clean(lv_scr_act());
