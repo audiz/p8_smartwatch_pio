@@ -20,7 +20,7 @@
 #include "pinout.h"
 #include "inputoutput.h"
 #include "antclient.h"
-#include "menu_Boot.h"
+#include "menu_Home.h"
 #include "watchdog.h"
 #include "fast_spi.h"
 #include "i2c.h"
@@ -28,13 +28,15 @@
 #include "display.h"
 #include "screen_style.h"
 #include "sleep.h"
+#include "interrupt.h"
 
-BootScreen* bootScreenPtr = BootScreen::getInstance();
+HomeScreen* bootScreenPtr = HomeScreen::getInstance();
 
 void setup() {
   //Serial.begin(9600);
+  initRTC2();
   init_fast_spi();//needs to be before init_display and external flash
-  //init_i2c();//needs to be before init_hrs3300, init_touch and init_accl
+  init_i2c();//needs to be before init_hrs3300, init_touch and init_accl
   init_inputoutput();
   init_backlight();
   init_display();
@@ -44,16 +46,15 @@ void setup() {
   bootScreenPtr->init();
 
   init_ant_client();
+  init_interrupt();//must be after ble!!!
+
   pinMode(STATUS_LED, OUTPUT);
-  digitalWrite(STATUS_LED, HIGH);
 }
 
-int ledState = HIGH;
-
 void loop() {
-  sd_app_evt_wait();
+  //sd_app_evt_wait();
 
-  if (get_button()) {
+  /*if (get_button()) {
     if(ledState) {
        disable_ble();
        set_backlight(0);
@@ -72,6 +73,7 @@ void loop() {
     }
     //digitalWrite(STATUS_LED, ledState);
     delay(1000);
-  
-  }
+  }*/
+
+   gets_interrupt_flag();//check interrupt flags and do something with it
 }

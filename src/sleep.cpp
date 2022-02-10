@@ -146,7 +146,7 @@ void initRTC2() {
   NRF_RTC2->TASKS_START = 1;
 }
 
-/*#ifdef __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 void RTC2_IRQHandler(void)
@@ -161,9 +161,9 @@ void RTC2_IRQHandler(void)
     shot = true;
     if (!sleep_sleeping)inc_tick();
     check_inputoutput_times();
-    if (!get_i2cReading())get_heartrate_ms();
+    //if (!get_i2cReading())get_heartrate_ms();
   }
 }
 #ifdef __cplusplus
 }
-#endif*/
+#endif

@@ -1,5 +1,5 @@
 #include "antclient.h"
-#include "menu_Boot.h"
+#include "menu_Home.h"
 
 BLEClientService        hrms(UUID16_SVC_HEART_RATE);
 BLEClientCharacteristic hrmc(UUID16_CHR_HEART_RATE_MEASUREMENT);
@@ -7,7 +7,7 @@ BLEClientCharacteristic bslc(UUID16_CHR_BODY_SENSOR_LOCATION);
 
 uint16_t conn_handle_main;
 
-BootScreen* bootScreen = BootScreen::getInstance();
+HomeScreen* bootScreen = HomeScreen::getInstance();
 
 void disable_ble() {
     Bluefruit.Scanner.restartOnDisconnect(false);
