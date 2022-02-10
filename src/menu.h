@@ -9,6 +9,7 @@
 #include "Arduino.h"
 #include "touch.h"
 #include "class_def.h"
+#include "touch_data.h"
 #include <lvgl.h>
 
 void init_menu();

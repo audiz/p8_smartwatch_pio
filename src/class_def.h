@@ -6,7 +6,7 @@
 
 #pragma once
 #include "Arduino.h"
-#include "menu.h"
+#include "touch_data.h"
 #include <lvgl.h>
 
 #define DEFAULT_SLEEP_TIMEOUT 10000

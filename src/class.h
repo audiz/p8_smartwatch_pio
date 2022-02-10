@@ -10,6 +10,7 @@
 #include "inputoutput.h"
 #include "sleep.h"
 #include "menu.h"
+#include "touch_data.h"
 
 class Screen : public Screen_def
 {

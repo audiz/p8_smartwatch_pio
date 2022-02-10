@@ -5,7 +5,6 @@
 */
 
 #include "menu.h"
-#include "class_def.h"
 #include "pinout.h"
 #include "touch.h"
 #include "backlight.h"

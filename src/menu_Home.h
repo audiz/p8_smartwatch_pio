@@ -12,12 +12,13 @@
 #if MENU_HOME
 
 #include "Arduino.h"
+#include "class.h"
 #include "display.h"
 #include "ble.h"
 #include "screen_style.h"
 #include <lvgl.h>
 #include "battery.h"
-#include "class.h"
+
 
 class HomeScreen : public Screen
 {

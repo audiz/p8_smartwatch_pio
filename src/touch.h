@@ -7,6 +7,7 @@
 #pragma once
 
 #include "Arduino.h"
+#include "touch_data.h"
 
 #define TOUCH_NO_GESTURE 0x00
 #define TOUCH_SLIDE_DOWN 0x01
@@ -17,17 +18,6 @@
 #define TOUCH_DOUBLE_CLICK 0x0B
 #define TOUCH_LONG_PRESS 0x0C
 
-struct touch_data_struct {
-  byte gesture;
-  byte touchpoints;
-  byte event;
-  int xpos;
-  int ypos;
-  int last_xpos;
-  int last_ypos;
-  uint8_t version15;
-  uint8_t versionInfo[3];
-};
 void init_touch();
 void sleep_touch(bool state);
 void set_new_touch_interrupt();
