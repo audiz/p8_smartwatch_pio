@@ -29,6 +29,7 @@
 #include "screen_style.h"
 #include "sleep.h"
 #include "interrupt.h"
+#include "menu.h"
 
 HomeScreen* bootScreenPtr = HomeScreen::getInstance();
 
@@ -43,37 +44,21 @@ void setup() {
   set_backlight(3);
   init_battery();
 
-  bootScreenPtr->init();
+  display_booting();
+  init_menu();
 
   init_ant_client();
   init_interrupt();//must be after ble!!!
 
   pinMode(STATUS_LED, OUTPUT);
+
+  display_home();
 }
 
 void loop() {
   //sd_app_evt_wait();
 
-  /*if (get_button()) {
-    if(ledState) {
-       disable_ble();
-       set_backlight(0);
-       display_enable(false);
-       //disable_hardware();
-       sleep_wait();
-       ledState = LOW;
-    } else {
-      if (!Bluefruit.connected()) {
-        bootScreenPtr->setHRM("HRM");
-        enable_ble();
-      }
-      set_backlight(1);
-      display_enable(true);
-      ledState = HIGH;
-    }
-    //digitalWrite(STATUS_LED, ledState);
-    delay(1000);
-  }*/
+  display_screen();
 
-   gets_interrupt_flag();//check interrupt flags and do something with it
+  gets_interrupt_flag();//check interrupt flags and do something with it
 }

@@ -9,6 +9,7 @@
 #include "touch.h"
 #include "backlight.h"
 #include "display.h"
+#include "menu_Boot.h"
 #include "menu_Home.h"
 #include <lvgl.h>
 
@@ -53,8 +54,8 @@ void display_charging() {
 void display_booting() {
   set_gray_screen_style();
   lastScreen = currentScreen;
-  currentScreen = homeScreen;
-  oldScreen = homeScreen;
+  currentScreen = &bootScreen;
+  oldScreen = &bootScreen;
   set_swipe_enabled(false);
   currentScreen->pre_display();
   set_gray_screen_style();

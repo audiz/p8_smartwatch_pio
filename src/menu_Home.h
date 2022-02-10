@@ -5,27 +5,22 @@
  */
 #pragma once
 
-#ifndef MENU_HOME
-#define MENU_HOME 1
-#endif
-
-#if MENU_HOME
-
 #include "Arduino.h"
-#include "class.h"
 #include "display.h"
 #include "ble.h"
 #include "screen_style.h"
 #include <lvgl.h>
 #include "battery.h"
-
+#include "class.h"
 
 class HomeScreen : public Screen
 {
 public:
   static HomeScreen *getInstance();
 
-  virtual void init();
+  virtual void init() {
+
+  }; 
 
   virtual void setBleInfo(const char *text);
 
@@ -33,10 +28,7 @@ public:
 
   virtual void setHRM(const char *text);
 
-  virtual void pre()
-  {
-
-  }
+  virtual void pre();
 
   virtual void main()
   {
@@ -45,12 +37,12 @@ public:
 
   virtual void up()
   {
-    inc_vars_menu();
+    //inc_vars_menu();
   }
 
   virtual void down()
   {
-    dec_vars_menu();
+    //dec_vars_menu();
   }
 
   virtual void left()
@@ -63,7 +55,7 @@ public:
 
   virtual void button_push(int length)
   {
-    sleep_down();
+    //sleep_down();
   }
 
 private:
@@ -77,5 +69,3 @@ private:
   /* Private constructor to prevent instancing. */
   HomeScreen();
 };
-
-#endif

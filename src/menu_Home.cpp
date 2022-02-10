@@ -2,7 +2,7 @@
 #include "fonts/fonts.h"
 #include "fonts/mksdl100.h"
 
-void HomeScreen::init()
+void HomeScreen::pre()
 {
     set_gray_screen_style(&lv_font_roboto_28);
     label_battery = lv_label_create(lv_scr_act(), NULL);

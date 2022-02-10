@@ -7,7 +7,7 @@ BLEClientCharacteristic bslc(UUID16_CHR_BODY_SENSOR_LOCATION);
 
 uint16_t conn_handle_main;
 
-HomeScreen* bootScreen = HomeScreen::getInstance();
+HomeScreen* homeScreenPtr2 = HomeScreen::getInstance();
 
 void disable_ble() {
     Bluefruit.Scanner.restartOnDisconnect(false);
@@ -60,7 +60,6 @@ void init_ant_client() {
   //Bluefruit.Scanner.filterUuid(hrms.uuid);
   Bluefruit.Scanner.useActiveScan(false); // Request scan response data
   Bluefruit.Scanner.start(0);                   // // 0 = Don't stop scanning after n seconds
- 
 }
 
 
@@ -75,7 +74,7 @@ void scan_callback(ble_gap_evt_adv_report_t* report)
   // Since we configure the scanner with filterUuid()
   // Scan callback only invoked for device with hrm service advertised
   // Connect to device with HRM service in advertising
-  bootScreen->setBleInfo("scan");
+  homeScreenPtr2->setBleInfo("scan");
   Bluefruit.Central.connect(report);
 }
 
@@ -86,7 +85,7 @@ void scan_callback(ble_gap_evt_adv_report_t* report)
 void scan_stop_callback(void)
 {
   //digitalWrite(STATUS_LED, HIGH);
-  bootScreen->setBleInfo("stop_callback");
+  homeScreenPtr2->setBleInfo("stop_callback");
 }
 
 
@@ -101,7 +100,7 @@ void connect_callback(uint16_t conn_handle)
   //digitalWrite(STATUS_LED, HIGH);
   //Serial.println("Connected");
   ///Serial.print("Discovering HRM Service ... ");
-  bootScreen->setBleInfo("connect");
+  homeScreenPtr2->setBleInfo("connect");
 
   // If HRM is not found, disconnect and return
   if ( !hrms.discover(conn_handle) )
@@ -160,7 +159,7 @@ void disconnect_callback(uint16_t conn_handle, uint8_t reason)
   //digitalWrite(STATUS_LED, HIGH);
   (void) conn_handle;
   (void) reason;
-  bootScreen->setBleInfo("disconnect");
+  homeScreenPtr2->setBleInfo("disconnect");
   //tftPrintInfo(String(MSG_DISCONNECTED) + String(": ") + String(retries));
   //Serial.print("Disconnected, reason = 0x"); Serial.println(reason, HEX);
 }
@@ -187,7 +186,7 @@ void hrm_notify_callback(BLEClientCharacteristic* chr, uint8_t* data, uint16_t l
   }
   else
   {
-    bootScreen->setHRM(data[1]);
+    homeScreenPtr2->setHRM(data[1]);
     //Serial.println(data[1]);
   }
 }
