@@ -14,7 +14,7 @@
 
 void init_menu();
 void display_home();
-void display_notify();
+void display_stat();
 void display_charging();
 void display_booting();
 void display_screen(bool ignoreWait = false);
@@ -29,3 +29,4 @@ bool swipe_enabled();
 void inc_vars_menu();
 void dec_vars_menu();
 static void lv_event_handler(lv_obj_t * object, lv_event_t event);
+bool is_current_screen(Screen_def* screen);

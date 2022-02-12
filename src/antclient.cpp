@@ -8,6 +8,8 @@ BLEClientCharacteristic bslc(UUID16_CHR_BODY_SENSOR_LOCATION);
 uint16_t conn_handle_main;
 
 HomeScreen* homeScreenPtr2 = HomeScreen::getInstance();
+char hrBuffer[3];  // heart rate buffer
+
 
 void disable_ble() {
     Bluefruit.Scanner.restartOnDisconnect(false);
@@ -181,11 +183,13 @@ void hrm_notify_callback(BLEClientCharacteristic* chr, uint8_t* data, uint16_t l
   if ( data[0] & bit(0) )
   {
     uint16_t value;
-    memcpy(&value, data+1, 2);
+    memcpy(&value, data + 1, 2);
     //Serial.println(value);
   }
   else
-  {
+  { 
+    //sprintf(hrBuffer, "%d", data[1]); //convert 
+
     homeScreenPtr2->setHRM(data[1]);
     //Serial.println(data[1]);
   }

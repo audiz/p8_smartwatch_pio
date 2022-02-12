@@ -22,9 +22,9 @@ public:
 
   virtual void setBleInfo(const char *text);
 
-  virtual void setHRM(uint8_t data);
-
   virtual void setHRM(const char *text);
+
+  virtual void setHRM(uint8_t data);
 
   virtual void pre();
 
@@ -60,7 +60,15 @@ private:
   lv_obj_t *label;
   lv_obj_t *status_label;
   lv_obj_t *ble_label;
+  lv_obj_t *minHr_label;
   lv_style_t st;
+  const char *text_label = "Heart Rate";
+  const char *text_ble_label = "HRM";
+  const char *text_status_label = "search ant+";
+  uint8_t minHr = 0;
+  uint8_t maxHr = 0;
+  lv_obj_t * chart;
+  lv_chart_series_t * ser1;
   /* Here will be the instance stored. */
   static HomeScreen *instance;
   /* Private constructor to prevent instancing. */

@@ -34,3 +34,8 @@ https://devzone.nordicsemi.com/f/nordic-q-a/68500/--sd-req-for-the-latest-versio
 "float_flags": "-mfloat-abi=hard -mfpu=fpv4-sp-d16 -DCONFIG_NFCT_PINS_AS_GPIOS -DNRF52 -DS332 -DNRF51_S332",
 
 https://www.codetd.com/en/article/12564031
+
+
+LVGL 6.1 chart styles
+
+https://docs.lvgl.io/6.1/object-types/chart.html?highlight=chart#styles

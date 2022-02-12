@@ -11,6 +11,7 @@
 #include "display.h"
 #include "menu_Boot.h"
 #include "menu_Home.h"
+#include "menu_Stat.h"
 #include <lvgl.h>
 
 long last_main_run;
@@ -33,15 +34,19 @@ void init_menu() {
 
 }
 
+bool is_current_screen(Screen_def* screen) {
+  return screen == currentScreen;
+}
+
 void display_home() {
   lastScreen = currentScreen;
   currentScreen = homeScreen;
   vars_menu = 0;
 }
 
-void display_notify() {
+void display_stat() {
   lastScreen = currentScreen;
-  currentScreen = &bootScreen;
+  currentScreen = &statScreen;
   vars_menu = 0;
 }
 
