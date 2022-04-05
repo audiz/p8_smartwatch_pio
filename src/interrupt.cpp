@@ -235,7 +235,6 @@ void interrupt_button() {
 }
 
 void interrupt_touch() {
-  //digitalWrite(STATUS_LED, HIGH);
   set_was_touched(true);
   if (!sleep_up(WAKEUP_TOUCH)) {
     touch_data_struct touch_data = get_touch();

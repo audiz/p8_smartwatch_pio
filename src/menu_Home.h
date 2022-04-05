@@ -61,12 +61,12 @@ private:
   lv_obj_t *status_label;
   lv_obj_t *ble_label;
   lv_obj_t *minHr_label;
+  lv_obj_t *maxHr_label;
+  lv_obj_t *avgHr_label;
   lv_style_t st;
   const char *text_label = "Heart Rate";
   const char *text_ble_label = "HRM";
   const char *text_status_label = "search ant+";
-  uint8_t minHr = 0;
-  uint8_t maxHr = 0;
   lv_obj_t * chart;
   lv_chart_series_t * ser1;
   /* Here will be the instance stored. */

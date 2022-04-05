@@ -1,5 +1,6 @@
 #include "antclient.h"
 #include "menu_Home.h"
+#include "menu_Stat.h"
 
 BLEClientService        hrms(UUID16_SVC_HEART_RATE);
 BLEClientCharacteristic hrmc(UUID16_CHR_HEART_RATE_MEASUREMENT);
@@ -7,6 +8,7 @@ BLEClientCharacteristic bslc(UUID16_CHR_BODY_SENSOR_LOCATION);
 
 uint16_t conn_handle_main;
 
+StatScreen* statScreen2 = &statScreen;
 HomeScreen* homeScreenPtr2 = HomeScreen::getInstance();
 char hrBuffer[3];  // heart rate buffer
 
@@ -189,8 +191,8 @@ void hrm_notify_callback(BLEClientCharacteristic* chr, uint8_t* data, uint16_t l
   else
   { 
     //sprintf(hrBuffer, "%d", data[1]); //convert 
-
     homeScreenPtr2->setHRM(data[1]);
+    statScreen2->setHRM(data[1]);
     //Serial.println(data[1]);
   }
 }
